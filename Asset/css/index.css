@@ -4,6 +4,12 @@
 
 .navbar {
   background-color: #269fd2;
+  list-style-type: none;
+  overflow: hidden;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 .btn {
   background-color: #269fd2;
@@ -12,7 +18,7 @@
 footer {
   background-color: #269fd2;
   height: 50px;
-  padding: 15px;
+  padding: 10px;
 }
 
 img {
@@ -24,9 +30,12 @@ img {
 }
 
 .fas {
-  width: 34px;
-  height: 28px;
+  width: 32px;
+  height: 22px;
   color: aliceblue;
+}
+.fr {
+  margin-top: 5px;
 }
 
 .carousel-caption {
@@ -45,7 +54,19 @@ img {
 }
 
 .img1 {
-  background-image: url(../Img/sepatu4.jpg);
+  background-image: url(../Img/bn1.jpg);
+}
+.img2 {
+  background-image: url(../Img/bn2.jpg);
+}
+.img3 {
+  background-image: url(../Img/bn3.jpg);
+}
+.img4 {
+  background-image: url(../Img/bn4.jpg);
+}
+.img5 {
+  background-image: url(../Img/bn5.jpg);
 }
 .card {
   height: 400px;
@@ -57,9 +78,7 @@ img {
   margin-top: 10px;
   margin-left: 55px;
 }
-.fas {
-  margin-top: 16px;
-}
+
 .fa-shopping-cart {
   margin-left: 20px;
 }
