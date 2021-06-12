@@ -1,3 +1,30 @@
 .carousel-item {
   height: 500px;
 }
+
+.navbar {
+  background-color: #269fd2;
+}
+.btn {
+  background-color: #269fd2;
+}
+
+footer {
+  background-color: #269fd2;
+  height: 50px;
+  padding: 8px;
+}
+
+img {
+  opacity: 85%;
+}
+
+#footer {
+  color: aliceblue;
+}
+
+.fas {
+  width: 34px;
+  height: 28px;
+  color: aliceblue;
+}
