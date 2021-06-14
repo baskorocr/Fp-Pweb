@@ -1,0 +1,40 @@
+.r {
+}
+.d {
+}
+.ck {
+  margin-top: 40px;
+}
+.card {
+  margin-left: 100px;
+  margin-top: 40px;
+}
+.card-body {
+  background-color: #e8e8e8;
+}
+.rp {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+.pesanan {
+  background-color: white;
+  padding-top: 30px;
+  padding-left: 20px;
+  height: 210px;
+}
+.code {
+  margin-top: 18px;
+}
+#undo {
+  margin-left: 60px;
+}
+#shield {
+  margin-left: 100px;
+}
+
+#gambar {
+  margin-left: 150px;
+}
+#text {
+  padding-top: 30px;
+}
