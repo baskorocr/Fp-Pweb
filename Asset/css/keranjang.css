@@ -1,0 +1,17 @@
+#keranjang {
+  margin-top: 45px;
+  margin-left: 100px;
+}
+.t {
+  background-color: bisque;
+}
+.r {
+  background-color: aqua;
+}
+
+.card {
+  margin-left: 100px;
+  margin-top: 20px;
+  width: 400px;
+  background-color: rgb(0, 0, 0);
+}
