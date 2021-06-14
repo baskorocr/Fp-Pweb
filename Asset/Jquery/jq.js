@@ -1,10 +1,4 @@
 $(function () {
-  $("#wanita").click(function () {
-    $("#Home").show();
-    $("#Home").hide();
-  });
-  $("#imgnav").click(function () {
-    $("#Home").show();
-    $("#wanita").show();
-  });
+  $('#nav').load('nav.html');
+  $('#footer').load('footer.html');
 });
