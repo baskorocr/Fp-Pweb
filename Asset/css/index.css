@@ -16,6 +16,9 @@ body {
   width: 100%;
   z-index: 1;
 }
+.logo:hover {
+  color: #000;
+}
 
 .btn {
   background-color: #269fd2;
@@ -25,8 +28,16 @@ footer {
   background-color: #269fd2;
   height: 50px;
   width: 100%;
+<<<<<<< HEAD
   position: absolute;
   bottom: 0;
+=======
+  line-height: 50px;
+  padding-left: 2px;
+  margin-top: 400px;
+  margin-right: 20px;
+  padding-bottom: 20px;
+>>>>>>> 3ad074c2a14b632741d36f697e80ed515cad302b
 }
 
 img {
@@ -90,4 +101,8 @@ img {
 
 .fa-shopping-cart {
   margin-left: 20px;
+}
+
+h5 {
+  background-color: #000;
 }
