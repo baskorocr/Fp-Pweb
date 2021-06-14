@@ -7,4 +7,4 @@
 <h5> OBJECT UPDATE</H5>
 1. NAVBAR DAN FOOTER dibuat terpisah
    Jika ingin menambahkannya cukup include library  <script src="Asset/JS/csi.js-master/src/csi.js"></script>
-   lalu bisa langsung di panggil untuk navbar (<div data-include="nav.html"></div>) setelah */<Body>/* dan untuk footer (<div data-include="footer.html"></div>) sebelum */</Body>/
+   lalu bisa langsung di panggil untuk navbar (<div data-include="nav.html"></div>) setelah */<Body> dan untuk footer (<div data-include="footer.html"></div>) sebelum /Body
