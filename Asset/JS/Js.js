@@ -11,19 +11,17 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-let email = 'xx@gmail.com';
-let password = '';
 let alamat = '';
+let uid = '';
 let nama = '';
 let nomerhp = '';
 
 let db = firebase.database().ref('user');
-function sendMessage(nama, email, password, alamat, nomerhp) {
+function sendMessage(nama, uid, alamat, nomerhp) {
   let newFormMessage = db.push();
   newFormMessage.set({
     nama: nama,
-    email: email,
-    password: password,
+    uid: uid,
     alamat: alamat,
     nomerhp: nomerhp,
   });
@@ -33,13 +31,29 @@ let auth = firebase.auth();
 function regis() {
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
+
   // harus direct ke dashboard, bila berhasil daftar
   auth
     .createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
-      var user = userCredential.user;
-      sendMessage(nama, email, password, alamat, nomerhp);
+      var data = userCredential.user;
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          var user = firebase.auth().currentUser;
+
+          if (user) {
+            var uid = user.uid;
+            sendMessage(nama, uid, alamat, nomerhp);
+            window.location.href = '../FP1/Login.html';
+            return false;
+          } else {
+            // No user is signed in.
+          }
+        }
+      });
+
       alert('pendaftaran sukses');
       // ...
     })
@@ -67,7 +81,49 @@ function keluar() {
     });
 }
 
-let get = firebase.database().ref('user');
+function login() {
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      alert('welcome');
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+}
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      console.log(user.uid);
+    } else {
+      // No user is signed in.
+    }
+  }
+});
+
+//untuk membedakan akses yang belum login dengan yang sudah
+function akses() {
+  var user = firebase.auth().currentUser;
+
+  if (user.uid == null) {
+    window.location.href = '../FP1/Login.html';
+  } else {
+    //belum diganti jadi dashboard.html
+    window.location.href = '../FP1/Login.html';
+  }
+}
+
+/*let get = firebase.database().ref('user');
 function delok() {
   // on() method
   get.on('value', (snap) => {
@@ -80,24 +136,4 @@ function delok() {
       console.log(chats[i]['password']);
     }
   });
-}
-
-function login() {
-  var email = document.getElementById('email').value;
-  var password = document.getElementById('password').value;
-
-  get.on('value', (snap) => {
-    var json = snap.val();
-    var id = Object.keys(json);
-    var user = Object.values(json);
-
-    for (let i = 0; i < id.length; i++) {
-      if (email == user[i]['email'] && password == user[i]['password']) {
-        alert('berhasil login');
-        break;
-      } else {
-        alert('akun anda salah');
-      }
-    }
-  });
-}
+}*/

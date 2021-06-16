@@ -65,6 +65,38 @@ function keluar() {
     });
 }
 
+function login() {
+  var email = document.myform.username.value;
+  var password = document.myform.password.value;
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      alert('welcome');
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+}
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      console.log(user.uid);
+    } else {
+      // No user is signed in.
+    }
+  }
+});
+
+/*
 let get = firebase.database().ref('user');
 function delok() {
   // on() method
@@ -79,23 +111,4 @@ function delok() {
     }
   });
 }
-
-function login() {
-  var email = document.myform.username.value;
-  var password = document.myform.password.value;
-
-  get.on('value', (snap) => {
-    var json = snap.val();
-    var id = Object.keys(json);
-    var chats = Object.values(json);
-
-    for (let i = 0; i < id.length; i++) {
-      if (email == chats[i]['email'] && password == chats[i]['password']) {
-        alert('berhasil login');
-        break;
-      } else {
-        alert('akun anda salah');
-      }
-    }
-  });
-}
+*/
