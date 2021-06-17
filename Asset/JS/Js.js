@@ -46,6 +46,7 @@ function regis() {
           if (user) {
             var uid = user.uid;
             sendMessage(nama, uid, alamat, nomerhp);
+            // masuk ke dashboard
             window.location.href = '../FP1/Login.html';
             return false;
           } else {
@@ -112,15 +113,24 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 //untuk membedakan akses yang belum login dengan yang sudah
+//dipasang di icon navbar
 function akses() {
   var user = firebase.auth().currentUser;
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var user = firebase.auth().currentUser;
 
-  if (user.uid == null) {
-    window.location.href = '../FP1/Login.html';
-  } else {
-    //belum diganti jadi dashboard.html
-    window.location.href = '../FP1/Login.html';
-  }
+      if (user) {
+        var uid = user.uid;
+
+        if (uid == null) {
+          window.location.href = '../FP1/Login.html';
+        } else {
+          window.location.href = '../FP1/Login.html';
+        }
+      }
+    }
+  });
 }
 
 /*let get = firebase.database().ref('user');
