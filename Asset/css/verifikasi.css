@@ -1,0 +1,30 @@
+.bayar {
+ margin-top:40px;
+ margin-left: 110px;
+ color: #e7f1f5;
+}
+.jarak{
+    margin-top: 130px;
+
+    
+}
+.baris{
+    margin-left: 480px;
+}
+.fa-check-circle{
+    margin-left: 20px;
+  margin-top: 30px;
+
+}
+.Status{
+    background-color: #000000 ;
+    color: white;
+    height: 45px;
+    padding-top: 5px;
+}
+.Berhasil{
+    padding-top: 15px;
+}
+.kotak{
+    background-color: #E5E5E5;
+}

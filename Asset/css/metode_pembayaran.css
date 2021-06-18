@@ -1,0 +1,21 @@
+.ukuran{
+    width: 100px;
+    height: 80px;
+}
+.kotak{
+    background-color:#E5E5E5;
+}
+.cash{
+    background-color: #404040;
+    color: white;
+    
+}
+.cash{
+    background-color: #000000 ;
+    color: white;
+    height: 45px;
+    padding-top: 5px;
+}
+.bayar{
+    background-color: #269FD2;
+}
