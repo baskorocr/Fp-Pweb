@@ -73,18 +73,6 @@ function regis() {
     });
 }
 
-function keluar() {
-  auth
-    .signOut()
-    .then(() => {
-      alert('keluar berhasil');
-      window.location.href = 'Login.html';
-    })
-    .catch((error) => {
-      // An error happened.
-    });
-}
-
 function login() {
   var email = document.getElementById('email').value;
   var password = document.getElementById('password').value;
@@ -131,78 +119,19 @@ function aksescard() {
   });
 }
 
-let get = firebase.database().ref('user');
-function simpanData() {
-  alert('dsadsa');
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      var user = firebase.auth().currentUser;
-      get.on('value', (snap) => {
-        var json = snap.val();
-        var id = Object.keys(json);
-        var chats = Object.values(json);
-        var temp = false;
+function resetPassword() {
+  var auth = firebase.auth();
+  var emailAddress = document.getElementById('ResetEmail').value;
 
-        for (let i = 0; i < id.length; i++) {
-          if (user.uid == chats[i]['uid']) {
-            temp = i;
-            update(temp);
-            break;
-          }
-        }
-      });
-    }
-  });
+  auth
+    .sendPasswordResetEmail(emailAddress)
+    .then(function () {
+      alert('dsdsa');
+    })
+    .catch(function (error) {
+      // An error happened.
+    });
 }
-
-function update(x) {
-  var temp = x;
-
-  get.on('value', (snap) => {
-    var json = snap.val();
-    var id = Object.keys(json);
-    var chats = Object.values(json);
-    var Nama = document.getElementById('nama').value;
-    var Notelp = document.getElementById('nomertelp').value;
-    var Alamat = document.getElementById('alamat').value;
-    var Jeniskelamin = document.getElementById('jk').value;
-    firebase
-      .database()
-      .ref('user/' + id[x])
-      .update({
-        nama: Nama,
-        nomerhp: Notelp,
-        alamat: Alamat,
-        jk: Jeniskelamin,
-      });
-  });
-  console.log(x);
-}
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-      document.getElementById('email').value = user.email;
-      get.on('value', (snap) => {
-        var json = snap.val();
-        var id = Object.keys(json);
-        var data = Object.values(json);
-        var temp = false;
-
-        for (let i = 0; i < id.length; i++) {
-          if (user.uid == data[i]['uid']) {
-            document.getElementById('nama').value = data[i]['nama'];
-            document.getElementById('nomertelp').value = data[i]['nomerhp'];
-            document.getElementById('alamat').value = data[i]['alamat'];
-            document.getElementById('jk').value = data[i]['jk'];
-            break;
-          }
-        }
-      });
-    }
-  }
-});
 
 /*let get = firebase.database().ref('user');
 function delok() {
