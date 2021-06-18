@@ -11,15 +11,8 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-let email = 'xzx@gmail.com';
-let password = 'a676575';
-let alamat = 'dsadsad';
-let uid = 0;
-let nama = '';
-let nomerhp = '';
-
 let db = firebase.database().ref('user');
-function sendMessage(nama, email, password, alamat, nomerhp) {
+function sendMessage(nama, email, password, alamat, nomerhp, jk) {
   let newFormMessage = db.push();
   newFormMessage.set({
     nama: nama,
@@ -27,6 +20,7 @@ function sendMessage(nama, email, password, alamat, nomerhp) {
     password: password,
     alamat: alamat,
     nomerhp: nomerhp,
+    jk: jk,
   });
 }
 
@@ -38,7 +32,7 @@ function myFunction() {
     .then((userCredential) => {
       // Signed in
       var user = userCredential.user;
-      sendMessage(nama, email, password, alamat, nomerhp);
+      sendMessage(nama, email, password, alamat, nomerhp, jk);
       alert('pendaftaran sukses');
       // ...
     })
