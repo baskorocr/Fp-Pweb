@@ -181,7 +181,6 @@ function update(x) {
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     var user = firebase.auth().currentUser;
-    document.getElementById('email').innerHTML;
 
     if (user) {
       document.getElementById('email').value = user.email;
