@@ -24,32 +24,37 @@ H3{
 .cl1{
     background-color: white;
     height: 300px;
+    height: 25rem;
 }
 .cl1 p{
     color: black;
     padding-left: 15px;
 }
+.khs{
+    margin-top: 15px;
+}
 hr{
     width: 90%;
 }
 .cl2{
-    background-color: white;
-    margin-top: 13%;
+    background-color: yellow;
+    margin-top: 10%;
+    height: 100%;
 }
 .cl2 p{
     color: black;
     padding-left: 15px;
     margin-bottom: 0px;
-    font-size: 10pt;
-    height: 75px;
+    font-size: 9pt;
 }
 .input{
-    margin-top: 3px;
+    margin-top: 1px;
     width: 95%;
 }
 .input2{
     height: 50px;
     width: 95%;
+    margin-top: 1px;
 }
 .kanan{
     margin-left: 12%;
