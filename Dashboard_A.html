@@ -13,7 +13,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
-    <script src="Asset/JS/dashboard.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script src="Asset/JS/Js.js"></script>
     <script src="Asset/JS/csi.js-master/src/csi.js"></script>
     <link rel="stylesheet" href="Asset/css/DSA.css">
     <title>Document</title>
@@ -32,18 +33,22 @@
                         <div class="row">
                             <div class="col">
                                 <p class="har">Nama Barang : <br></p>
-                                <p>Harga :</p>
+                                <p>Harga Barang :</p>
                             </div>
                             <div class="col">
-                                <p><input type="text" name="" id="" class="input1"><br></p>
+                                <p><input type="text" class="input1" name="nama" id="namaBarang" ><br></p>
 
-                                <input type="text" name="" id="" class="input2">
+                                <input type="text" name="harga" id="harga" class="input2">
                             </div>
                         </div>
                         <p class="card-text">
-                            <input type="file" name="" id="" class="input3">
+                            <input type="file" name="upload" id="uploadBarang" class="input3">
                         </p>
-                        <button type="button" class="btn btn-primary prm">Save</button>
+                        <div class="row">
+                            <div class="col"> <button type="button" class="btn btn-primary prm" id="save" onclick="saveBarang()">Save</button></div>
+                            <div class="col"> <button type="button" class="btn btn-primary prm" id="keluar" onclick="keluar()">keluar</button></div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

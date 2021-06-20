@@ -10,8 +10,74 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 let get = firebase.database().ref('user');
+let authD = firebase.auth();
+var storage = firebase.storage();
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      document.getElementById('mail').value = user.email;
+      var storageRef = storage.ref('users/' + user.uid + '/' + 'profil.jpg');
+      storageRef.getDownloadURL().then((imgUrl) => {
+        img.src = imgUrl;
+      });
+      get.on('value', (snap) => {
+        var json = snap.val();
+        var id = Object.keys(json);
+        var data = Object.values(json);
+        var temp = false;
+        var check = document.getElementsByClassName('cek');
+
+        for (let i = 0; i < id.length; i++) {
+          if (user.uid == data[i]['uid']) {
+            document.getElementById('nama').value = data[i]['nama'];
+            document.getElementById('nomertelp').value = data[i]['nomerhp'];
+            document.getElementById('alamat').value = data[i]['alamat'];
+            console.log(id[i]);
+            if (data[i]['jk'] == check[0].value) {
+              check[0].checked = true;
+            }
+            if (data[i]['jk'] == check[1].value) {
+              check[1].checked = true;
+            }
+
+            break;
+          }
+        }
+      });
+    }
+  }
+});
+
+function keluar() {
+  authD
+    .signOut()
+    .then(() => {
+      alert('keluar berhasil');
+      window.location.href = 'Login.html';
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+}
+
+var button = document.getElementById('upload');
+
+function up() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var user = firebase.auth().currentUser;
+      var file = document.getElementById('upload').files[0];
+      var storageRef = storage.ref('users/' + user.uid + '/' + 'profil.jpg');
+      storageRef.put(file);
+      alert('dsadsa');
+    }
+  });
+}
+
 function simpanData() {
   alert('dsadsa');
   firebase.auth().onAuthStateChanged(function (user) {
@@ -45,7 +111,14 @@ function update(x) {
     var Nama = document.getElementById('nama').value;
     var Notelp = document.getElementById('nomertelp').value;
     var Alamat = document.getElementById('alamat').value;
-    var Jeniskelamin = document.getElementById('jk').value;
+    var Jeniskelamin;
+    var check = document.getElementsByClassName('cek');
+    if (check[0].checked == true) {
+      Jeniskelamin = check[0].value;
+    }
+    if (check[1].checked == true) {
+      Jeniskelamin = check[1].value;
+    }
     firebase
       .database()
       .ref('user/' + id[x])
@@ -57,44 +130,4 @@ function update(x) {
       });
   });
   console.log(x);
-}
-
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-      document.getElementById('mail').value = user.email;
-      get.on('value', (snap) => {
-        var json = snap.val();
-        var id = Object.keys(json);
-        var data = Object.values(json);
-        var temp = false;
-
-        for (let i = 0; i < id.length; i++) {
-          if (user.uid == data[i]['uid']) {
-            document.getElementById('nama').value = data[i]['nama'];
-            document.getElementById('nomertelp').value = data[i]['nomerhp'];
-            document.getElementById('alamat').value = data[i]['alamat'];
-            document.getElementById('jk').value = data[i]['jk'];
-            break;
-          }
-        }
-      });
-    }
-  }
-});
-
-let authD = firebase.auth();
-
-function keluar() {
-  authD
-    .signOut()
-    .then(() => {
-      alert('keluar berhasil');
-      window.location.href = 'Login.html';
-    })
-    .catch((error) => {
-      // An error happened.
-    });
 }

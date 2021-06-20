@@ -10,7 +10,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+let get = firebase.database().ref('user');
+let authD = firebase.auth();
 let alamat = '';
 let uid = '';
 let nama = '';
@@ -87,10 +88,18 @@ function login() {
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
           var user = firebase.auth().currentUser;
+          var admin = 't6qBev27vyNM38TM4HQ998mfD0g1';
+
+          if (user.uid != admin) {
+            var user = firebase.auth().currentUser;
+            window.location.href = 'Dashboard_P.html';
+          } else;
+          {
+            var user = firebase.auth().currentUser;
+            window.location.href = 'Dashboard_A.html';
+          }
         }
       });
-
-      window.location.href = 'Dashboard_P.html';
 
       // ...
     })
@@ -100,6 +109,17 @@ function login() {
     });
 }
 
+function keluar() {
+  authD
+    .signOut()
+    .then(() => {
+      alert('keluar berhasil');
+      window.location.href = 'Login.html';
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+}
 function akseslogin() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -109,39 +129,66 @@ function akseslogin() {
     }
   });
 }
-firebase.auth().onAuthStateChanged(function (user) {
-  if (user) {
-    var user = firebase.auth().currentUser;
 
+var button = document.getElementById('upload');
+
+function up() {
+  firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      document.getElementById('mail').value = user.email;
+      var user = firebase.auth().currentUser;
+      var file = document.getElementById('upload').files[0];
+      var storageRef = storage.ref('users/' + user.uid + '/' + 'profil.jpg');
+      storageRef.put(file);
+      alert('dsadsa');
+    }
+  });
+}
+
+function simpanData() {
+  alert('dsadsa');
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var user = firebase.auth().currentUser;
       get.on('value', (snap) => {
         var json = snap.val();
         var id = Object.keys(json);
-        var data = Object.values(json);
+        var chats = Object.values(json);
         var temp = false;
 
         for (let i = 0; i < id.length; i++) {
-          if (user.uid == data[i]['uid']) {
-            document.getElementById('nama').value = data[i]['nama'];
-            document.getElementById('nomertelp').value = data[i]['nomerhp'];
-            document.getElementById('alamat').value = data[i]['alamat'];
-            document.getElementById('jk').value = data[i]['jk'];
+          if (user.uid == chats[i]['uid']) {
+            temp = i;
+            update(temp);
             break;
           }
         }
       });
     }
-  }
-});
-function aksescard() {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      window.location.href = 'keranjang.html';
-    } else {
-      window.location.href = 'Login.html';
-    }
   });
+}
+
+function update(x) {
+  var temp = x;
+
+  get.on('value', (snap) => {
+    var json = snap.val();
+    var id = Object.keys(json);
+    var chats = Object.values(json);
+    var Nama = document.getElementById('nama').value;
+    var Notelp = document.getElementById('nomertelp').value;
+    var Alamat = document.getElementById('alamat').value;
+    var Jeniskelamin = document.getElementById('jk').value;
+    firebase
+      .database()
+      .ref('user/' + id[x])
+      .update({
+        nama: Nama,
+        nomerhp: Notelp,
+        alamat: Alamat,
+        jk: Jeniskelamin,
+      });
+  });
+  console.log(x);
 }
 
 function resetPassword() {
@@ -158,17 +205,30 @@ function resetPassword() {
     });
 }
 
-/*let get = firebase.database().ref('user');
-function delok() {
-  // on() method
-  get.on('value', (snap) => {
-    var json = snap.val();
-    var id = Object.keys(json);
-    var chats = Object.values(json);
+// bagian upload barang
+var storage = firebase.storage();
+var barang = firebase.database().ref('barang');
+function saveBarang() {
+  var namaBarang = document.getElementById('namaBarang').value;
+  var harga = document.getElementById('harga').value;
 
-    for (let i = 0; i < id.length; i++) {
-      console.log(chats[i]['email']);
-      console.log(chats[i]['password']);
-    }
+  barang.on('value', (snap) => {
+    var json = snap.val();
+    var getIdBarang = Object.keys(json);
+    Upbarang(namaBarang, harga, getIdBarang.length);
+    console.log(getIdBarang.length);
+    var file = document.querySelector('#uploadBarang').files[0];
+    var storageRef = storage.ref('barang/' + getIdBarang + '/' + 'barang.jpg');
+    storageRef.put(file);
+    alert('barang berhasil ditambah');
   });
-}*/
+}
+
+function Upbarang(namabarang, hargabarang, id) {
+  var push = barang.push();
+  push.set({
+    idbarang: id,
+    barang: namabarang,
+    harga: hargabarang,
+  });
+}

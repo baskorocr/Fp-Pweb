@@ -1,62 +1,62 @@
-h2{
-    padding-top: 3%;
-    padding-bottom: 2%;
+h2 {
+  padding-top: 3%;
+  padding-bottom: 2%;
 }
-.c1{
-    /* background-color: thistle; */
-    width: 60%;
+.c1 {
+  /* background-color: thistle; */
+  width: 60%;
 }
-.l1{
-    /* background-color: turquoise; */
-    height: 500px;
+.l1 {
+  /* background-color: turquoise; */
+  height: 500px;
 }
-.l2{
-    /* background-color: violet; */
-    height: 500px;
+.l2 {
+  /* background-color: violet; */
+  height: 500px;
 }
-.p1{
-    text-align: right;
+.p1 {
+  text-align: right;
 }
-.img1{
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+.img1 {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }
-#btn1{
-    margin-top: 10%;
-    background-color: white;
+#upload {
+  margin-top: 10%;
+  background-color: white;
 }
-#btn1:hover{
-    color: black;
+#btn1:hover {
+  color: black;
 }
-.input1{
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    width: 70%;
+.input1 {
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  width: 70%;
 }
-.input2{
-    margin-top: 32px;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    width: 70%;
+.input2 {
+  margin-top: 32px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  width: 70%;
 }
-.input2{
-    margin-top: 32px;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    width: 70%;
+.input2 {
+  margin-top: 32px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  width: 70%;
 }
 
-.input3{
-    margin-top: 47px;
+.input3 {
+  margin-top: 47px;
 }
-#btn2{
-    margin-top: 5%;
+#btn2 {
+  margin-top: 5%;
 }
-#btn3{
-    margin-left: 4%;
-    margin-top: 5%;
+#btn3 {
+  margin-left: 4%;
+  margin-top: 5%;
 }
