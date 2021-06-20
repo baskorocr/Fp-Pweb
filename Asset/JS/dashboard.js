@@ -58,3 +58,43 @@ function update(x) {
   });
   console.log(x);
 }
+
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      document.getElementById('mail').value = user.email;
+      get.on('value', (snap) => {
+        var json = snap.val();
+        var id = Object.keys(json);
+        var data = Object.values(json);
+        var temp = false;
+
+        for (let i = 0; i < id.length; i++) {
+          if (user.uid == data[i]['uid']) {
+            document.getElementById('nama').value = data[i]['nama'];
+            document.getElementById('nomertelp').value = data[i]['nomerhp'];
+            document.getElementById('alamat').value = data[i]['alamat'];
+            document.getElementById('jk').value = data[i]['jk'];
+            break;
+          }
+        }
+      });
+    }
+  }
+});
+
+let authD = firebase.auth();
+
+function keluar() {
+  authD
+    .signOut()
+    .then(() => {
+      alert('keluar berhasil');
+      window.location.href = 'Login.html';
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+}
