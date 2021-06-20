@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -94,16 +95,87 @@
                 Log Out
               </button>
             </div>
+=======
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+  <link rel="stylesheet" href="Asset/css/DS2.css">
+  <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+  <script src="Asset/JS/dashboard.js"></script>
+  <script src="Asset/JS/csi.js-master/src/csi.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div data-include="nav.html"></div>
+  <div class="judul">
+    <center>
+      <h2>Dashboard Akun</h2>
+    </center>
+  </div>
+  <div class="container c1">
+    <div class="row">
+      <div class="col-3 l1">
+        <p class="text-end">
+          <img src="Asset/Img/PP.jpg" alt="" class="img1" /><br />
+          <button type="button" class="btn btn-outline-secondary" id="btn1">
+            Pilih Gambar
+          </button>
+        </p>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col-3 l2">
+            <p class="p1">Nama</p>
+            <br />
+            <p class="p1">Email</p>
+            <br />
+            <p class="p1">No. Telp</p>
+            <br />
+            <p class="p1">Alamat</p>
+            <br />
+            <p class="p1">Jenis kelamin</p>
+            <br />
+          </div>
+          <div class="col-9 l3">
+            <input type="text" class="input1" id="nama" /><br />
+            <input type="text" class="input2" id="mail" /><br />
+            <input type="text" class="input2" id="nomertelp" /><br />
+            <input type="text" class="input2" id="alamat" /><br />
+
+            <p class="input3">
+              <input type="checkbox" name="" id="">
+              <label for="">Laki-laki</label>
+              <input type="checkbox" name="" id="">
+              <label for="">Perempuan</label><br>
+            </p>
+
+            <button type="button" class="btn btn-primary" id="btn2" onclick="simpanData()">
+              Simpan
+            </button>
+            <button type="button" class="btn btn-primary" id="btn3" onclick="keluar()">
+              Log Out
+            </button>
+>>>>>>> ec56403c8047f7490080a8837a6f8c44ce1a8972
           </div>
         </div>
       </div>
     </div>
-    <div data-include="footer.html"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  </div>
+  <div data-include="footer.html"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
