@@ -50,7 +50,7 @@ function regis() {
             var uid = user.uid;
             sendMessage(nama, uid, alamat, nomerhp, jk);
             // masuk ke dashboard
-            window.location.href = '../FP1/Login.html';
+            window.location.href = 'Login.html';
             return false;
           } else {
             // No user is signed in.
@@ -83,23 +83,12 @@ function login() {
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
-      var user = userCredential.user;
       alert('welcome');
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          var user = firebase.auth().currentUser;
-          var admin = 't6qBev27vyNM38TM4HQ998mfD0g1';
-
-          if (user.uid != admin) {
-            var user = firebase.auth().currentUser;
-            window.location.href = 'Dashboard_P.html';
-          } else;
-          {
-            var user = firebase.auth().currentUser;
-            window.location.href = 'Dashboard_A.html';
-          }
-        }
-      });
+      if (email == 'w@gmail.com') {
+        window.location.href = 'Dashboard_A.html';
+      } else {
+        window.location.href = 'Dashboard_P.html';
+      }
 
       // ...
     })
@@ -120,12 +109,42 @@ function keluar() {
       // An error happened.
     });
 }
+
 function akseslogin() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      window.location.href = 'Dashboard_P.html';
+      var user = firebase.auth().currentUser;
+      get.on('value', (snap) => {
+        var json = snap.val();
+        var id = Object.keys(json);
+        var chats = Object.values(json);
+        var temp = false;
+
+        for (let i = 0; i < id.length; i++) {
+          if (user.uid == chats[i]['uid']) {
+            temp = i;
+            akses(temp);
+            break;
+          }
+        }
+      });
     } else {
       window.location.href = 'Login.html';
+    }
+  });
+}
+
+function akses(x) {
+  get.on('value', (snap) => {
+    var json = snap.val();
+    var id = Object.keys(json);
+    var chats = Object.values(json);
+    var tampung = id[x];
+    console.log(tampung);
+    if (tampung == '-Mcc6ghIReVfGQ44tRtq') {
+      window.location.href = 'Dashboard_A.html';
+    } else {
+      window.location.href = 'Dashboard_P.html';
     }
   });
 }
@@ -211,23 +230,28 @@ var barang = firebase.database().ref('barang');
 function saveBarang() {
   var namaBarang = document.getElementById('namaBarang').value;
   var harga = document.getElementById('harga').value;
+  var e = document.getElementById('katagori');
+  var katagorival = e.options[e.selectedIndex].value;
+  console.log(harga);
+  Upbarang(namaBarang, harga, katagorival);
 
   barang.on('value', (snap) => {
     var json = snap.val();
     var getIdBarang = Object.keys(json);
-    Upbarang(namaBarang, harga, getIdBarang.length);
-    console.log(getIdBarang.length);
+
     var file = document.querySelector('#uploadBarang').files[0];
-    var storageRef = storage.ref('barang/' + getIdBarang + '/' + 'barang.jpg');
+    var storageRef = storage.ref(
+      'barang/' + katagorival + '/' + (getIdBarang.length - 1) + '.jpg'
+    );
     storageRef.put(file);
     alert('barang berhasil ditambah');
   });
 }
 
-function Upbarang(namabarang, hargabarang, id) {
+function Upbarang(namabarang, hargabarang, katagoriv) {
   var push = barang.push();
   push.set({
-    idbarang: id,
+    katagori: katagoriv,
     barang: namabarang,
     harga: hargabarang,
   });

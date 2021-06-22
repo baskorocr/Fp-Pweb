@@ -1,32 +1,36 @@
-h2{
-    padding-top: 3%;
-    padding-bottom: 2%;
+h2 {
+  padding-top: 3%;
+  padding-bottom: 2%;
 }
-.cr1{
-    background-color: bisque;
+.cr1 {
+  background-color: bisque;
 }
-.r1{
-    background-color: bisque;
-    align-items: center;
-    width: 10px;
+.r1 {
+  background-color: bisque;
+  align-items: center;
+  width: 10px;
 }
-.kanan{
-    margin-left: 36%;
+.kanan {
+  margin-left: 36%;
 }
-.input2{
-    margin-top: 2px;
+.input2 {
+  margin-top: 2px;
 }
-.har{
-    margin-bottom: 21%;
+.har {
+  margin-bottom: 21%;
 }
-.chs{
-    margin-left: 20%;
+.chs {
+  margin-left: 20%;
 }
-.input3{
-    margin-left: 17%;
-    margin-top: 10%;
+.input3 {
+  margin-left: 17%;
+  margin-top: 8px;
 }
-.prm{
-    margin-top: 5%;
-    margin-left: 41%;
+.prm {
+  margin-top: 5%;
+  margin-left: 41%;
+}
+
+.r2 {
+  margin-top: 8px;
 }

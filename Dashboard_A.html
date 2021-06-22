@@ -34,17 +34,30 @@
                             <div class="col">
                                 <p class="har">Nama Barang : <br></p>
                                 <p>Harga Barang :</p>
+                                <p>Katagori &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;:</p>
                             </div>
                             <div class="col">
                                 <p><input type="text" class="input1" name="nama" id="namaBarang" ><br></p>
-
-                                <input type="text" name="harga" id="harga" class="input2">
+                                <p><input type="text" name="harga" id="harga" class="input2">
+                                </p>
+                                <select id="katagori">
+                                    <option value="">Choose Your Answer</option>
+                                    <option value="pria">Pria</option>
+                                    <option value="wanita">Wanita</option>
+                                    <option value="anak">Anak</option>
+                                    <option value="sport">Sport</option>
+                                    <option value="brand">Brand</option>
+                                  </select>
+                                
                             </div>
                         </div>
-                        <p class="card-text">
+                     
                             <input type="file" name="upload" id="uploadBarang" class="input3">
-                        </p>
-                        <div class="row">
+                        
+                        
+                        
+                        
+                        <div class="row r2">
                             <div class="col"> <button type="button" class="btn btn-primary prm" id="save" onclick="saveBarang()">Save</button></div>
                             <div class="col"> <button type="button" class="btn btn-primary prm" id="keluar" onclick="keluar()">keluar</button></div>
                         </div>
