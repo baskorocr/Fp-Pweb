@@ -74,3 +74,64 @@ function akses(x) {
     }
   });
 }
+
+//get order
+
+if (document.readyState == 'loading') {
+  document.addEventListener('DOMContentLoaded', ready);
+} else {
+  ready();
+}
+
+function ready() {
+  var addToCartButtons = document.getElementsByClassName('cekout');
+  for (var i = 0; i < addToCartButtons.length; i++) {
+    var button = addToCartButtons[i];
+    button.addEventListener('click', addToCartClicked);
+  }
+}
+
+function addToCartClicked(event) {
+  var button = event.target;
+  var shopItem =
+    button.parentElement.parentElement.parentElement.parentElement
+      .parentElement;
+  var title = shopItem.getElementsByClassName('text')[0].innerText;
+  var harga = shopItem.getElementsByClassName('harga')[0].innerText;
+  var srcImg = shopItem.getElementsByClassName('foto')[0].src;
+
+  console.log(title, harga, srcImg);
+  sendOrder(title, harga, srcImg);
+}
+
+function sendOrder(x, y, z) {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var user = firebase.auth().currentUser;
+      barang.on('value', (snap) => {
+        var json = snap.val();
+        var getIdBarang = Object.keys(json);
+        var getValBarang = Object.values(json);
+
+        for (let i = 0; i < getIdBarang.length; i++) {
+          if (x == getValBarang[i]['barang']) {
+            saveTransaksi(x, y, z, user.uid, localStorage.clickcount);
+          }
+        }
+      });
+    } else {
+      alert('anda belum login');
+      window.location.href = 'Login.html';
+    }
+  });
+}
+
+let transaksi = firebase.database();
+function saveTransaksi(x, y, z, d, c) {
+  let save = transaksi.ref('keranjang/' + d + '/').push();
+  save.set({
+    Pesanan: x,
+    harga: y,
+    link: z,
+  });
+}

@@ -41,7 +41,11 @@
             <div class="card-body">
               <div class="row">
                 <div class="d-grid gap-2">
-                  <button class="btn btn-primary" type="button">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    onclick="cekoutNext()"
+                  >
                     <h8>CHECKOUT</h8>
                     <h8><i class="fas fa-arrow-circle-right"></i></h8>
                   </button>
@@ -50,11 +54,18 @@
               <div class="row rp">
                 <h8>RINGKASAN PESANAN :</h8>
               </div>
-              <div class="pesanan">
-                <p>dsadsa</p>
-                <p>dsadsa</p>
-                <p>dsadsa</p>
-                <p>dsadsa</p>
+              <div class="row">
+                <div class="col">
+                  <p class="totalPesanan">dsadsa</p>
+                  <p><h6>Total Produk</h6></p>
+                  <p><h6>Pengiriman</h6></p>
+                  <p><h6>Total</h6></p>
+                  <p><h6>(Termasuk Pajak)</h6></p>
+                </div>
+                <div class="col">
+                  <p>&nbsp;</p>
+                  <p>dasd</p>
+                </div>
               </div>
 
               <div class="d-grid gap-2 code">
@@ -124,7 +135,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
-    <script src="Asset/JS/Js.js"></script>
+    <script src="Asset/JS/Keranjang.js"></script>
     <script src="Asset/JS/csi.js-master/src/csi.js"></script>
   </body>
 </html>

@@ -95,6 +95,10 @@ function login() {
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
+      console.log(errorCode);
+      if ((errorCode = 'auth/invalid-email')) {
+        alert('Email dan Password anda salah');
+      }
     });
 }
 
@@ -103,6 +107,7 @@ function keluar() {
     .signOut()
     .then(() => {
       alert('keluar berhasil');
+      window.localStorage.clear();
       window.location.href = 'Login.html';
     })
     .catch((error) => {
@@ -245,6 +250,7 @@ function saveBarang() {
     );
     storageRef.put(file);
     alert('barang berhasil ditambah');
+    window.location.href('Dashboard_A.html');
   });
 }
 
@@ -254,5 +260,17 @@ function Upbarang(namabarang, hargabarang, katagoriv) {
     katagori: katagoriv,
     barang: namabarang,
     harga: hargabarang,
+  });
+}
+
+//CekOut
+
+function cekoutNext() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      window.location.href = 'Checkout.html';
+    } else {
+      window.location.href = 'Login.html';
+    }
   });
 }
