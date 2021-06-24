@@ -19,7 +19,7 @@ barang.on('value', (snap) => {
   var getValBarang = Object.values(json);
 
   for (let i = 0; i < getIdBarang.length; i++) {
-    if (getValBarang[i]['katagori'] == 'wanita') {
+    if (getValBarang[i]['katagori'] == 'brand') {
       var temp = i;
       pria(temp, getValBarang);
     }
@@ -31,7 +31,7 @@ function pria(x, y) {
   document.getElementById('hargaP' + x).innerHTML = y[x]['harga'];
   var p = x;
   p = p + 1;
-  var storageRef = storage.ref('barang/wanita/' + x + '.jpg');
+  var storageRef = storage.ref('barang/brand/' + x + '.jpg');
   storageRef.getDownloadURL().then((imgUrl) => {
     document.getElementById('imgP' + x).src = imgUrl;
   });
@@ -100,8 +100,10 @@ function addToCartClicked(event) {
   var harga = shopItem.getElementsByClassName('harga')[0].innerText;
   var srcImg = shopItem.getElementsByClassName('foto')[0].src;
 
-  console.log(title, harga, srcImg);
-  sendOrder(title, harga, srcImg);
+  if (title && harga == null) {
+  } else {
+    sendOrder(title, harga, srcImg);
+  }
 }
 
 function sendOrder(x, y, z) {

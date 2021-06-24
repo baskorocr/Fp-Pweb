@@ -18,8 +18,8 @@ barang.on('value', (snap) => {
   var getIdBarang = Object.keys(json);
   var getValBarang = Object.values(json);
 
-  for (let i = 0; i < getIdBarang.length; i++) {
-    if (getValBarang[i]['katagori'] == 'wanita') {
+  for (let i = 16; i < getIdBarang.length; i++) {
+    if (getValBarang[i]['katagori'] == 'anak') {
       var temp = i;
       pria(temp, getValBarang);
     }
@@ -31,7 +31,7 @@ function pria(x, y) {
   document.getElementById('hargaP' + x).innerHTML = y[x]['harga'];
   var p = x;
   p = p + 1;
-  var storageRef = storage.ref('barang/wanita/' + x + '.jpg');
+  var storageRef = storage.ref('barang/anak/' + x + '.jpg');
   storageRef.getDownloadURL().then((imgUrl) => {
     document.getElementById('imgP' + x).src = imgUrl;
   });

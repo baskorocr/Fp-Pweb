@@ -10,7 +10,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-var keranjang = firebase.database();
+
 var get = firebase.database().ref('user');
 
 if (document.readyState == 'loading') {
@@ -19,7 +19,30 @@ if (document.readyState == 'loading') {
   ready();
 }
 
-function ready() {}
+function ready() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var user = firebase.auth().currentUser;
+      var keranjang = firebase.database().ref('keranjang/' + user.uid + '/');
+      keranjang.on('value', (snap) => {
+        var json = snap.val();
+        var idKeranjang = Object.keys(json);
+        var dataKeranjang = Object.values(json);
+        document.getElementById('jml').innerHTML =
+          idKeranjang.length + ' ' + 'Produk';
+        let total = 0;
+        for (let p = 0; p < idKeranjang.length; p++) {
+          var temp = parseInt(dataKeranjang[p]['harga']);
+          total = total + temp;
+        }
+        document.getElementById('gratis').innerHTML = 'Gratis';
+        document.getElementById('total').innerHTML = 'Rp. ' + total;
+      });
+    } else {
+      window.location.href = 'Login.html';
+    }
+  });
+}
 
 //next cekOut
 function cekoutNext() {
