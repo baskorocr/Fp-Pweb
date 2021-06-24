@@ -126,9 +126,9 @@ function sendOrder(x, y, z) {
   });
 }
 
-let transaksi = firebase.database();
+let keranjang = firebase.database();
 function saveTransaksi(x, y, z, d, c) {
-  let save = transaksi.ref('keranjang/' + d + '/').push();
+  let save = keranjang.ref('keranjang/' + d + '/').push();
   save.set({
     Pesanan: x,
     harga: y,

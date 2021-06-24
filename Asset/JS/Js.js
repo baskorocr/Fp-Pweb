@@ -264,13 +264,3 @@ function Upbarang(namabarang, hargabarang, katagoriv) {
 }
 
 //CekOut
-
-function cekoutNext() {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      window.location.href = 'Checkout.html';
-    } else {
-      window.location.href = 'Login.html';
-    }
-  });
-}
