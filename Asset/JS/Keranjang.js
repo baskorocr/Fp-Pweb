@@ -37,6 +37,15 @@ function ready() {
         }
         document.getElementById('gratis').innerHTML = 'Gratis';
         document.getElementById('total').innerHTML = 'Rp. ' + total;
+        var p;
+        /*
+        for (let y = 0; y < 20; y++) {
+          p = document.getElementById('r');
+
+          p.innerHTML +=
+            '<div class="card" style="height: 20px; width: 30rem;"> <div class="card-body"> <p class="card-text"> Some quick example text to build on the card title and make up the bulk of the cards content. </p> </div> </div>';
+        }
+        */
       });
     } else {
       window.location.href = 'Login.html';
