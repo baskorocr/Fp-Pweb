@@ -99,6 +99,7 @@ function addToCartClicked(event) {
   var title = shopItem.getElementsByClassName('text')[0].innerText;
   var harga = shopItem.getElementsByClassName('harga')[0].innerText;
   var srcImg = shopItem.getElementsByClassName('foto')[0].src;
+  alert('Pesanan anda sudah masuk dikeranjang');
 
   console.log(title, harga, srcImg);
   sendOrder(title, harga, srcImg);
