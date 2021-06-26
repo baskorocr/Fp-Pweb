@@ -10,7 +10,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 var get = firebase.database().ref('user');
 
 if (document.readyState == 'loading') {
@@ -19,9 +18,32 @@ if (document.readyState == 'loading') {
   ready();
 }
 
-//getting data keranjang
-
 function ready() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      var user = firebase.auth().currentUser;
+
+      get.on('value', (snap) => {
+        var json = snap.val();
+        var userId = Object.keys(json);
+        var userVal = Object.values(json);
+        var nama = document.getElementById('nama');
+        var alamat = document.getElementById('alamat');
+        var notelp = document.getElementById('notelp');
+        for (let i = 0; i < userId.length; i++) {
+          if (user.uid == userVal[i]['uid']) {
+            console.log(userId[i]);
+            nama.value = userVal[i]['nama'];
+            alamat.value = userVal[i]['alamat'];
+            notelp.value = userVal[i]['nomerhp'];
+          }
+        }
+      });
+    }
+  });
+}
+
+function sendTransaksi() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var user = firebase.auth().currentUser;
@@ -30,60 +52,47 @@ function ready() {
         var json = snap.val();
         var idKeranjang = Object.keys(json);
         var dataKeranjang = Object.values(json);
-        var item = document.getElementById('item');
-
         for (let y = 0; y < idKeranjang.length; y++) {
-          item.innerHTML +=
-            '<div class="row " id="t"> <div class="col-4"><img src="asset/Img/download.png" alt="" style="height: 100px;" class="img"></div> <div class="col"><div class="row "> <div class="col "><p class="namabarang">dsad</p> <p class="hargabarang">dadsa</p></div> </div></div> </div>';
+          var pesanan = dataKeranjang[y]['Pesanan'];
+          var harga = dataKeranjang[y]['harga'];
+          var link = dataKeranjang[y]['link'];
+          Transaksi(pesanan, harga, link);
         }
 
-        var getImg = document.getElementsByClassName('img');
-        var getNama = document.getElementsByClassName('namabarang');
-        var getHarga = document.getElementsByClassName('hargabarang');
-        for (var i = 0; i < getImg.length; i += 1) {
-          getImg[i].src = dataKeranjang[i]['link'];
-          getNama[i].innerHTML = dataKeranjang[i]['Pesanan'];
-          getHarga[i].innerHTML = dataKeranjang[i]['harga'];
-        }
-
-        document.getElementById('jml').innerHTML =
-          idKeranjang.length + ' ' + 'Produk';
-        let total = 0;
-        for (let p = 0; p < idKeranjang.length; p++) {
-          var temp = parseInt(dataKeranjang[p]['harga']);
-          total = total + temp;
-        }
-        document.getElementById('gratis').innerHTML = 'Gratis';
-        document.getElementById('total').innerHTML = 'Rp. ' + total;
+        keranjang.remove();
       });
-    } else {
-      window.location.href = 'Login.html';
+      window.location.href = 'metode_pembayaran.html';
     }
   });
 }
 
-//hapus data keranjang
-
-function hapusKeranjang() {
+function Transaksi(x, y, z) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+      var e = document.getElementById('kurir');
+      var kurir = e.options[e.selectedIndex].value;
+      var catatan = document.getElementById('catatan').value;
       var user = firebase.auth().currentUser;
-      var keranjang = firebase.database().ref('keranjang/' + user.uid + '/');
-      keranjang.remove();
-      window.location.href = 'keranjang.html';
+      var sendTransaksi = firebase
+        .database()
+        .ref('transaksi/' + user.uid + '/')
+        .push();
+
+      sendTransaksi.set({
+        pesanan: x,
+        harga: y,
+        kurir: kurir,
+        catatan: catatan,
+        link: z,
+      });
     }
   });
 }
 
-//next cekOut
-function cekoutNext(x) {
+function aksesKeranjang() {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      if (document.getElementById('total').textContent == '') {
-        alert('maaf keranjang anda masih kosong');
-      } else {
-        window.location.href = 'Checkout.html';
-      }
+      window.location.href = 'keranjang.html';
     } else {
       window.location.href = 'Login.html';
     }
@@ -124,16 +133,6 @@ function akses(x) {
       window.location.href = 'Dashboard_A.html';
     } else {
       window.location.href = 'Dashboard_P.html';
-    }
-  });
-}
-
-function aksesKeranjang() {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      window.location.href = 'keranjang.html';
-    } else {
-      window.location.href = 'Login.html';
     }
   });
 }
