@@ -137,3 +137,13 @@ function saveTransaksi(x, y, z, d, c) {
     link: z,
   });
 }
+
+function aksesKeranjang() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      window.location.href = 'keranjang.html';
+    } else {
+      window.location.href = 'Login.html';
+    }
+  });
+}
