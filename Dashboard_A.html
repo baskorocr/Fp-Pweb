@@ -28,6 +28,7 @@
     <div class="container">
         <div class="row">
             <div class="col kanan">
+                <h3>Tambah Barang</h3>
                 <div class="card cd1" style="width: 22rem; height: 16rem;">
                     <div class="card-body">
                         <div class="row">
@@ -37,7 +38,7 @@
                                 <p>Katagori &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;:</p>
                             </div>
                             <div class="col">
-                                <p><input type="text" class="input1" name="nama" id="namaBarang" ><br></p>
+                                <p><input type="text" class="input1" name="nama" id="namaBarang"><br></p>
                                 <p><input type="text" name="harga" id="harga" class="input2">
                                 </p>
                                 <select id="katagori">
@@ -47,27 +48,47 @@
                                     <option value="anak">Anak</option>
                                     <option value="sport">Sport</option>
                                     <option value="brand">Brand</option>
-                                  </select>
-                                
+                                </select>
                             </div>
                         </div>
-                     
-                            <input type="file" name="upload" id="uploadBarang" class="input3">
-                        
-                        
-                        
-                        
-                        <div class="row r2">
-                            <div class="col"> <button type="button" class="btn btn-primary prm" id="save" onclick="saveBarang()">Save</button></div>
-                            <div class="col"> <button type="button" class="btn btn-primary prm" id="keluar" onclick="keluar()">keluar</button></div>
+                        <input type="file" name="upload" id="uploadBarang" class="input3"><br>
+                        <button type="button" class="btn btn-primary prm" id="save" onclick="saveBarang()">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col kanan">
+                <h3>Kurang Barang</h3>
+                <div class="card cd1" style="width: 22rem; height: 16rem;">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p class="har">Nama Barang : <br></p>
+                                <p>Katagori &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;:</p>
+                            </div>
+                            <div class="col">
+                                <p><input type="text" class="input1" name="nama" id="namaBarang"><br></p>
+                                </p>
+                                <select id="katagori">
+                                    <option value="">Choose Your Answer</option>
+                                    <option value="pria">Pria</option>
+                                    <option value="wanita">Wanita</option>
+                                    <option value="anak">Anak</option>
+                                    <option value="sport">Sport</option>
+                                    <option value="brand">Brand</option>
+                                </select>
+                            </div>
                         </div>
-                        
+
+                        <div class="row r2">
+                            <div class="col"> <button type="button" class="btn btn-primary prm" id=""
+                                    onclick="saveBarang()">Delete</button></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+    <center><button type="button" class="btn btn-primary" id="keluar" onclick="keluar()">Keluar</button></center>
     <div data-include="footer.html"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

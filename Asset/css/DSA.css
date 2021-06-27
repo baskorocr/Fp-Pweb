@@ -2,6 +2,9 @@ h2 {
   padding-top: 3%;
   padding-bottom: 2%;
 }
+h3{
+  padding-left: 18%;
+}
 .cr1 {
   background-color: bisque;
 }
@@ -11,7 +14,7 @@ h2 {
   width: 10px;
 }
 .kanan {
-  margin-left: 36%;
+  margin-left: 12%;
 }
 .input2 {
   margin-top: 2px;
@@ -30,7 +33,6 @@ h2 {
   margin-top: 5%;
   margin-left: 41%;
 }
-
 .r2 {
   margin-top: 8px;
 }
