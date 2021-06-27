@@ -1,5 +1,6 @@
 .ck {
   margin-top: 40px;
+  margin-bottom: 100px;
 }
 .card {
   margin-left: 100px;
@@ -41,5 +42,33 @@
   margin-bottom: 20px;
 }
 #img {
-  height: 50px;
+  height: 80px;
+}
+#l {
+  margin-left: 50px;
+}
+
+#d {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 130px;
+  margin-right: 250px;
+
+  background-color: #e8e8e8;
+}
+
+#f {
+  margin-top: 18px;
+  margin-left: 100px;
+  height: 40px;
+  width: 200px;
+}
+#t {
+  margin-top: 10px;
+  background-color: #dfdede;
+}
+
+.img {
+  width: 100px;
+  height: 100px;
 }

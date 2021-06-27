@@ -131,3 +131,13 @@ function update(x) {
   });
   console.log(x);
 }
+
+function aksesKeranjang() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      window.location.href = 'keranjang.html';
+    } else {
+      window.location.href = 'Login.html';
+    }
+  });
+}
