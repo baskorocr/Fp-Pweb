@@ -14,3 +14,13 @@ firebase.initializeApp(firebaseConfig);
 function home() {
   window.location.href = 'index.html';
 }
+
+function aksesKeranjang() {
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      window.location.href = 'keranjang.html';
+    } else {
+      window.location.href = 'Login.html';
+    }
+  });
+}
