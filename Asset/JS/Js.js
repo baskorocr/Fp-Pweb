@@ -247,7 +247,6 @@ function saveBarang() {
   var harga = document.getElementById('harga').value;
   var e = document.getElementById('katagori');
   var katagorival = e.options[e.selectedIndex].value;
-  console.log(harga);
   Upbarang(namaBarang, harga, katagorival);
 
   barang.on('value', (snap) => {
@@ -273,4 +272,25 @@ function Upbarang(namabarang, hargabarang, katagoriv) {
   });
 }
 
-//CekOut
+//Hapus Barang
+function deleteBarang() {
+  var namaBarang = document.getElementById('namaBarang2').value;
+  var e = document.getElementById('katagori2');
+  var katagorival = e.options[e.selectedIndex].value;
+
+  barang.on('value', (snap) => {
+    var json = snap.val();
+    var getIdBarang = Object.keys(json);
+    var getValBarang = Object.values(json);
+    for (let i = 0; i < getIdBarang.length; i++) {
+      if (
+        namaBarang == getValBarang[i]['barang'] &&
+        katagorival == getValBarang[i]['katagori']
+      ) {
+        var temp = firebase.database().ref('barang/' + getIdBarang[i]);
+        temp.remove();
+        alert('barang terhapus');
+      }
+    }
+  });
+}
