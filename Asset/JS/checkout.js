@@ -60,8 +60,8 @@ function sendTransaksi() {
         }
 
         keranjang.remove();
+        window.location.href = 'verifikasi.html';
       });
-      window.location.href = 'metode_pembayaran.html';
     }
   });
 }
@@ -71,7 +71,12 @@ function Transaksi(x, y, z) {
     if (user) {
       var e = document.getElementById('kurir');
       var kurir = e.options[e.selectedIndex].value;
+      var d = document.getElementById('payment');
+      var transaksi = d.options[d.selectedIndex].value;
       var catatan = document.getElementById('catatan').value;
+      var nama = document.getElementById('nama').value;
+      var alamat = document.getElementById('alamat').value;
+      var nomer = document.getElementById('notelp').value;
       var user = firebase.auth().currentUser;
       var sendTransaksi = firebase
         .database()
@@ -79,11 +84,15 @@ function Transaksi(x, y, z) {
         .push();
 
       sendTransaksi.set({
+        nama: nama,
+        alamat: alamat,
+        nomertelp: nomer,
         pesanan: x,
         harga: y,
         kurir: kurir,
         catatan: catatan,
         link: z,
+        payment: transaksi,
       });
     }
   });
