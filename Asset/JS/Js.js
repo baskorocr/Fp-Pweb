@@ -272,7 +272,7 @@ function Upbarang(namabarang, hargabarang, katagoriv) {
   });
 }
 
-//Hapus Barang
+//Hapus Barang done
 function deleteBarang() {
   var namaBarang = document.getElementById('namaBarang2').value;
   var e = document.getElementById('katagori2');
