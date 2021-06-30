@@ -60,7 +60,15 @@ function sendTransaksi() {
         }
 
         keranjang.remove();
-        window.location.href = 'verifikasi.html';
+        swal({
+          title: 'Cek Whatsapp anda!',
+          icon: 'info',
+          text: 'kami akan mengirim notifikasi pembayaran',
+          button: false,
+        });
+        setTimeout(function () {
+          window.location.href = 'index.html';
+        }, 4000);
       });
     }
   });

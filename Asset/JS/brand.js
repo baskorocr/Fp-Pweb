@@ -99,12 +99,13 @@ function addToCartClicked(event) {
   var title = shopItem.getElementsByClassName('text')[0].innerText;
   var harga = shopItem.getElementsByClassName('harga')[0].innerText;
   var srcImg = shopItem.getElementsByClassName('foto')[0].src;
-  alert('Pesanan anda sudah masuk dikeranjang');
+  swal({
+    title: 'Tambah ke Keranjang Berhasil!',
+    icon: 'success',
+    text: ' ',
+  });
 
-  if (title && harga == null) {
-  } else {
-    sendOrder(title, harga, srcImg);
-  }
+  sendOrder(title, harga, srcImg);
 }
 
 function sendOrder(x, y, z) {

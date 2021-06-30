@@ -21,12 +21,12 @@ barang.on('value', (snap) => {
   for (let i = 0; i < getIdBarang.length; i++) {
     if (getValBarang[i]['katagori'] == 'wanita') {
       var temp = i;
-      pria(temp, getValBarang);
+      wanita(temp, getValBarang);
     }
   }
 });
 
-function pria(x, y) {
+function wanita(x, y) {
   document.getElementById('textP' + x).innerHTML = y[x]['barang'];
   document.getElementById('hargaP' + x).innerHTML = y[x]['harga'];
   var p = x;
@@ -92,6 +92,11 @@ function ready() {
 }
 
 function addToCartClicked(event) {
+  swal({
+    title: 'Tambah ke Keranjang Berhasil!',
+    icon: 'success',
+    text: ' ',
+  });
   var button = event.target;
   var shopItem =
     button.parentElement.parentElement.parentElement.parentElement
@@ -99,8 +104,7 @@ function addToCartClicked(event) {
   var title = shopItem.getElementsByClassName('text')[0].innerText;
   var harga = shopItem.getElementsByClassName('harga')[0].innerText;
   var srcImg = shopItem.getElementsByClassName('foto')[0].src;
-  alert('Pesanan anda sudah masuk dikeranjang');
-  console.log(title, harga, srcImg);
+
   sendOrder(title, harga, srcImg);
 }
 

@@ -82,7 +82,11 @@ function cekoutNext(x) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       if (document.getElementById('total').textContent == '') {
-        alert('maaf keranjang anda masih kosong');
+        swal({
+          title: 'Maaf Keranjang anda masih kosong!',
+          icon: 'info',
+          text: 'Silakan lakukan pemilihan barang',
+        });
       } else {
         window.location.href = 'Checkout.html';
       }

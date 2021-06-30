@@ -50,7 +50,16 @@ function regis() {
             var uid = user.uid;
             sendMessage(nama, uid, alamat, nomerhp, jk);
             // masuk ke dashboard
-            window.location.href = 'Login.html';
+            swal({
+              title: 'Registrasi Berhasil!',
+              icon: 'success',
+              text: ' ',
+              button: false,
+            });
+            setTimeout(function () {
+              window.location.href = 'index.html';
+            }, 3000);
+
             return false;
           } else {
             // No user is signed in.
@@ -58,7 +67,6 @@ function regis() {
         }
       });
 
-      alert('pendaftaran sukses');
       // ...
     })
     .catch(function (error) {
@@ -66,11 +74,18 @@ function regis() {
       var errorCode = error.code;
       var errorMessage = error.message;
       if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
+        swal({
+          title: 'Password terlalu lemah!',
+          icon: 'info',
+          text: 'Silakan tambahkan combinasi lainnya',
+        });
       } else {
-        alert(errorMessage);
+        swal({
+          title: 'Email Telah ada!',
+          icon: 'info',
+          text: 'Silakan gunakan email lainnya',
+        });
       }
-      console.log(error);
     });
 }
 
@@ -83,21 +98,27 @@ function login() {
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
-      alert('welcome');
-      if (email == 'w@gmail.com') {
-        window.location.href = 'Dashboard_A.html';
-      } else {
-        window.location.href = 'Dashboard_P.html';
-      }
+      swal({
+        title: 'Login Berhasil!',
+        icon: 'success',
+        text: ' ',
+        button: false,
+      });
+      setTimeout(function () {
+        window.location.href = 'index.html';
+      }, 3000);
 
       // ...
     })
     .catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorCode);
       if ((errorCode = 'auth/invalid-email')) {
-        alert('Email dan Password anda salah');
+        swal({
+          title: 'Login Gagal!',
+          icon: 'error',
+          text: 'Periksa Email dan Password Anda!',
+        });
       }
     });
 }
@@ -235,7 +256,11 @@ function resetPassword() {
       alert('dsdsa');
     })
     .catch(function (error) {
-      // An error happened.
+      swal({
+        title: 'Masukan Email yang sesuai!',
+        icon: 'error',
+        text: ' ',
+      });
     });
 }
 
@@ -270,6 +295,15 @@ function Upbarang(namabarang, hargabarang, katagoriv) {
     barang: namabarang,
     harga: hargabarang,
   });
+  swal({
+    title: 'Upload Barang Berhasil!',
+    icon: 'success',
+    text: ' ',
+    button: false,
+  });
+  setTimeout(function () {
+    window.location.href = 'Dashboard_A.html';
+  }, 3000);
 }
 
 //Hapus Barang done
@@ -289,7 +323,15 @@ function deleteBarang() {
       ) {
         var temp = firebase.database().ref('barang/' + getIdBarang[i]);
         temp.remove();
-        alert('barang terhapus');
+        swal({
+          title: 'Hapus Barang Berhasil!',
+          icon: 'success',
+          text: ' ',
+          button: false,
+        });
+        setTimeout(function () {
+          window.location.href = 'Dashboard_A.html';
+        }, 3000);
       }
     }
   });
