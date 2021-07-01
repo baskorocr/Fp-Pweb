@@ -323,15 +323,33 @@ function deleteBarang() {
       ) {
         var temp = firebase.database().ref('barang/' + getIdBarang[i]);
         temp.remove();
-        swal({
-          title: 'Hapus Barang Berhasil!',
-          icon: 'success',
-          text: ' ',
-          button: false,
-        });
-        setTimeout(function () {
-          window.location.href = 'Dashboard_A.html';
-        }, 3000);
+        var storageRef = storage.ref(
+          'barang/' + katagorival + '/' + i + '.jpg'
+        );
+        storageRef
+          .delete()
+          .then(function () {
+            swal({
+              title: 'Hapus Barang Berhasil!',
+              icon: 'success',
+              text: ' ',
+              button: false,
+            });
+            setTimeout(function () {
+              window.location.href = 'Dashboard_A.html';
+            }, 3000);
+          })
+          .catch(function (error) {
+            swal({
+              title: 'Hapus Barang Gagal!',
+              icon: 'error',
+              text: 'Silakan hubungi server management terkait!',
+              button: false,
+            });
+            setTimeout(function () {
+              window.location.href = 'Dashboard_A.html';
+            }, 3000);
+          });
       }
     }
   });

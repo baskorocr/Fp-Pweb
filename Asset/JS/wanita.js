@@ -122,10 +122,22 @@ function sendOrder(x, y, z) {
             saveTransaksi(x, y, z, user.uid, localStorage.clickcount);
           }
         }
+        swal({
+          title: 'Tambah ke Keranjang Berhasil!',
+          icon: 'success',
+          text: ' ',
+        });
       });
     } else {
-      alert('anda belum login');
-      window.location.href = 'Login.html';
+      swal({
+        title: 'Anda belum login!',
+        icon: 'info',
+        text: 'Silakan Login terlebih daulu',
+        button: false,
+      });
+      setTimeout(function () {
+        window.location.href = 'Login.html';
+      }, 3000);
     }
   });
 }

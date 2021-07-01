@@ -99,11 +99,7 @@ function addToCartClicked(event) {
   var title = shopItem.getElementsByClassName('text')[0].innerText;
   var harga = shopItem.getElementsByClassName('harga')[0].innerText;
   var srcImg = shopItem.getElementsByClassName('foto')[0].src;
-  swal({
-    title: 'Tambah ke Keranjang Berhasil!',
-    icon: 'success',
-    text: ' ',
-  });
+
   sendOrder(title, harga, srcImg);
 }
 
@@ -121,10 +117,22 @@ function sendOrder(x, y, z) {
             saveTransaksi(x, y, z, user.uid, localStorage.clickcount);
           }
         }
+        swal({
+          title: 'Tambah ke Keranjang Berhasil!',
+          icon: 'success',
+          text: ' ',
+        });
       });
     } else {
-      alert('anda belum login');
-      window.location.href = 'Login.html';
+      swal({
+        title: 'Anda belum login!',
+        icon: 'info',
+        text: 'Silakan Login terlebih daulu',
+        button: false,
+      });
+      setTimeout(function () {
+        window.location.href = 'Login.html';
+      }, 3000);
     }
   });
 }
