@@ -21,12 +21,12 @@ barang.on('value', (snap) => {
   for (let i = 16; i < getIdBarang.length; i++) {
     if (getValBarang[i]['katagori'] == 'anak') {
       var temp = i;
-      pria(temp, getValBarang);
+      anak(temp, getValBarang);
     }
   }
 });
 
-function pria(x, y) {
+function anak(x, y) {
   document.getElementById('textP' + x).innerHTML = y[x]['barang'];
   document.getElementById('hargaP' + x).innerHTML = y[x]['harga'];
   var p = x;
