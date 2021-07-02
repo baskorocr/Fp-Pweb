@@ -11,12 +11,14 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-var hp = firebase.database().ref('Hp');
-hp.on('value', (snap) => {
+var bts = firebase.database().ref('BTS/BtsAlmbum');
+bts.on('value', (snap) => {
   var json = snap.val();
-  var idHp = Object.keys(json);
-  var valHp = Object.values(json);
+  var idBts = Object.keys(json);
+  var valBts = Object.values(json);
   var text = document.getElementById('coba');
+  var text2 = document.getElementById('coba2');
 
-  text.innerHTML = idHp[1];
+  text.innerHTML = valBts[0]['JudulLagu'];
+  text2.innerHTML = valBts[0]['Harga'];
 });

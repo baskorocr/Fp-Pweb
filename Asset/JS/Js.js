@@ -127,9 +127,15 @@ function keluar() {
   authD
     .signOut()
     .then(() => {
-      alert('keluar berhasil');
-      window.localStorage.clear();
-      window.location.href = 'Login.html';
+      swal({
+        title: 'Keluar Berhasil!',
+        icon: 'success',
+        text: ' ',
+        button: false,
+      });
+      setTimeout(function () {
+        window.location.href = 'Login.html';
+      }, 3000);
     })
     .catch((error) => {
       // An error happened.
