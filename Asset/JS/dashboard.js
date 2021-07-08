@@ -19,7 +19,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     var user = firebase.auth().currentUser;
 
     if (user) {
-      document.getElementById('mail').value = user.email;
       var storageRef = storage.ref('users/' + user.uid + '/' + 'profil.jpg');
       storageRef.getDownloadURL().then((imgUrl) => {
         img.src = imgUrl;
@@ -36,6 +35,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             document.getElementById('nama').value = data[i]['nama'];
             document.getElementById('nomertelp').value = data[i]['nomerhp'];
             document.getElementById('alamat').value = data[i]['alamat'];
+            document.getElementById('mail').value = user.email;
             console.log(id[i]);
             if (data[i]['jk'] == check[0].value) {
               check[0].checked = true;
@@ -80,13 +80,20 @@ function up() {
       var file = document.getElementById('upload').files[0];
       var storageRef = storage.ref('users/' + user.uid + '/' + 'profil.jpg');
       storageRef.put(file);
-      alert('dsadsa');
+      swal({
+        title: 'Gambar Terganti!',
+        icon: 'success',
+        text: ' ',
+        button: false,
+      });
+      setTimeout(function () {
+        window.location.href = 'Dashboard_P.html';
+      }, 3000);
     }
   });
 }
 
 function simpanData() {
-  alert('dsadsa');
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       var user = firebase.auth().currentUser;
@@ -104,6 +111,15 @@ function simpanData() {
           }
         }
       });
+      swal({
+        title: 'Data Berhasil Terganti!',
+        icon: 'success',
+        text: ' ',
+        button: false,
+      });
+      setTimeout(function () {
+        window.location.href = 'Dashboard_P.html';
+      }, 3000);
     }
   });
 }
